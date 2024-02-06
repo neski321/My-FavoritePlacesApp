@@ -10,6 +10,7 @@ import LoginScreen from './screens/LoginScreen';
 import CountriesListScreen from './screens/CountriesListScreen';
 import CountryDetailsScreen from './screens/CountryDetailsScreen';
 import FavoritesListsScreen from './screens/Favorites';
+import RegisterScreen from './screens/RegisterScreen';
 
 // create navigators
 const Stack = createStackNavigator()
@@ -19,6 +20,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen}/>
         <Stack.Screen name="Countries List" component={CountriesListScreen} />
         <Stack.Screen name="Country Details" component={CountryDetailsScreen} />   
         <Stack.Screen name="Favorites" component={FavoritesListsScreen} />     

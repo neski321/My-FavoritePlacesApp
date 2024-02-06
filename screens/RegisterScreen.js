@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import { View, TextInput, Button, Alert, Text, ImageBackground } from "react-native";
-import { auth, signInWithEmailAndPassword } from "../firebaseConfig.js";
+import { auth, createUserWithEmailAndPassword } from "../firebaseConfig.js";
 import styles from "../styles.js";
 
-const LoginScreen = (props) => {
+const RegisterScreen = (props) => {
   const [emailFromUI, setEmailFromUI] = useState("");
   const [passwordFromUI, setPasswordFromUI] = useState("");
 
-  const btnLoginPressed = async () => {
+  const btnRegisterPressed = async () => {
     try {
-      await signInWithEmailAndPassword(auth, emailFromUI, passwordFromUI);
+      // Create a new user account using Firebase authentication
+      await createUserWithEmailAndPassword(auth, emailFromUI, passwordFromUI);
+      Alert.alert("Registration Successful", "Your account has been created successfully!");
       props.navigation.navigate("Countries List");
     } catch (error) {
-      Alert.alert("Wrong Email/Password", error.message);
+      // Handle registration error and display an alert
+      Alert.alert("Registration Error", error.message);
     }
   };
 
@@ -20,7 +23,7 @@ const LoginScreen = (props) => {
     <ImageBackground source={require("../imageback.jpg")} style={styles.log_backgroundImage}>
       <View style={styles.log_container}>
         <View style={styles.loginBox}>
-          <Text style={styles.log_headerText}>Welcome</Text>
+          <Text style={styles.log_headerText}>Register</Text>
           <TextInput
             style={styles.log_input}
             placeholder="Enter email"
@@ -34,14 +37,14 @@ const LoginScreen = (props) => {
             value={passwordFromUI}
             onChangeText={setPasswordFromUI}
           />
-          <Button title="LOGIN" onPress={btnLoginPressed} />
+          <Button title="REGISTER" onPress={btnRegisterPressed} />
           <Text style={styles.log_footerText}>
-            Dont have an account?{" "}
+            Already have an account?{" "}
             <Text
               style={styles.log_footerLink}
-              onPress={() => props.navigation.navigate("Register")}
+              onPress={() => props.navigation.navigate("Login")}
             >
-              Register here
+              Login here
             </Text>
           </Text>
         </View>
@@ -50,4 +53,4 @@ const LoginScreen = (props) => {
   );
 };
 
-export default LoginScreen;
+export default RegisterScreen;
