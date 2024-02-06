@@ -27,5 +27,5 @@ The FavoritesListApp is a mobile application that allows users to explore inform
 
     React Native
     Firebase: Firebase is used for user authentication (Firebase Auth) and real-time database (Firestore) to store user-specific data.
-    React Navigation
-    Axios
+    React Navigation.
+    Axios.
