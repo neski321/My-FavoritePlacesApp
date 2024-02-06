@@ -49,9 +49,11 @@ const styles = StyleSheet.create({
       list_countryName: {
         fontSize: 20,
         fontWeight: "bold",
+        color: "white"
       },
       list_capital: {
         fontSize: 16,
+        color: "white"
       },
       list_divider: {
         height: 1,

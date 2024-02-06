@@ -1,6 +1,6 @@
 // Import necessary components and libraries from React Native and other dependencies
 import React, { useState, useEffect } from "react";
-import { View, FlatList, Text, Pressable, Button } from "react-native";
+import { View, FlatList, Text, Pressable, Button, ImageBackground } from "react-native";
 import { auth } from "../firebaseConfig"; // Assuming firebaseConfig contains Firebase authentication setup
 import axios from "axios"; // Library for making HTTP requests
 import styles from "../styles.js"; // Stylesheet for component styling
@@ -49,23 +49,25 @@ const CountriesListScreen = (props) => {
 
   // Render the component with FlatList displaying countries, "View Favorites" button, and "LOGOUT" button
   return (
-    <View style={styles.list_container}>
-      <FlatList
-        style={styles.list}
-        data={listData}
-        renderItem={({ item }) => (
-          <Pressable onPress={() => rowClicked(item)}>
-            <View style={styles.list_countryBox}>
-              <Text style={styles.list_countryName}>{item.name.common}</Text>
-              <Text style={styles.list_capital}>Capital: {item.capital}</Text>
-            </View>
-          </Pressable>
-        )}
-        ItemSeparatorComponent={() => <View style={styles.list_divider} />}
-      />
-      <Button title="View Favorites" onPress={handleNavigateToFavorites} style={styles.list_viewFavoritesButton} />
-      <Button title="LOGOUT" onPress={logoutPressed} color="#FF0000" />
-    </View>
+    <ImageBackground source={require("../backgroundTravel.jpg")} style={styles.fav_backgroundImage}>
+      <View style={styles.list_container}>
+        <FlatList
+          style={styles.list}
+          data={listData}
+          renderItem={({ item }) => (
+            <Pressable onPress={() => rowClicked(item)}>
+              <View style={styles.list_countryBox}>
+                <Text style={styles.list_countryName}>{item.name.common}</Text>
+                <Text style={styles.list_capital}>Capital: {item.capital}</Text>
+              </View>
+            </Pressable>
+          )}
+          ItemSeparatorComponent={() => <View style={styles.list_divider} />}
+        />
+        <Button title="View Favorites" onPress={handleNavigateToFavorites} style={styles.list_viewFavoritesButton} />
+        <Button title="LOGOUT" onPress={logoutPressed} color="#FF0000" />
+      </View>
+    </ImageBackground>
   );
 };
 
